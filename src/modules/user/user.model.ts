@@ -16,6 +16,7 @@ const userSchema = new Schema<TUser>({
   password: {
     type: String,
     required: true,
+    select: 0,
   },
   phone: {
     type: String,
@@ -35,6 +36,12 @@ userSchema.pre("save", async function (next) {
   const user = this;
 
   user.password = await bcryptjs.hash(user.password, Number(config.salt_round));
+
+  next();
+});
+
+userSchema.post("save", function (doc, next) {
+  doc.password = "";
 
   next();
 });
