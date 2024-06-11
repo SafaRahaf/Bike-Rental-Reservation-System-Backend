@@ -1,5 +1,6 @@
 import config from "../../config";
 import catchAsync from "../../utils/catchAsync";
+import { User } from "../user/user.model";
 import { authServices } from "./auth.service";
 
 // /api/auth/login (POST)
@@ -16,17 +17,18 @@ const signUp = catchAsync(async (req, res) => {
 });
 
 const login = catchAsync(async (req, res) => {
-  const { accessToken, refreshToken } = await authServices.login(req.body);
+  const { token, user } = await authServices.login(req.body);
 
-  res.cookie("refreshToken", refreshToken, {
-    httpOnly: true,
-    secure: config.node_env === "production",
-  });
+  // res.cookie("refreshToken", {
+  //   httpOnly: true,
+  //   secure: config.node_env === "production",
+  // });
 
   res.status(200).json({
     success: true,
-    message: "Logged in successfully!",
-    data: { accessToken, refreshToken },
+    message: "User logged in successfully!",
+    token,
+    data: user,
   });
 });
 

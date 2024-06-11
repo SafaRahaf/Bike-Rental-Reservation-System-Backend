@@ -13,7 +13,7 @@ const signUp = async (payload: TUser): Promise<any> => {
     throw new Error("User already exists");
   }
 
-  payload.role = ROLE.USER;
+  payload.role = ROLE.admin;
 
   const newUser = await User.create(payload);
 
@@ -41,21 +41,29 @@ const login = async (payload: TLoginUser) => {
     role: user.role,
   };
 
-  const accessToken = jwt.sign(jwtPayload, config.jwt_access_secret as string, {
+  const token = jwt.sign(jwtPayload, config.jwt_access_secret as string, {
     expiresIn: "1y",
   });
 
-  const refreshToken = jwt.sign(
-    jwtPayload,
-    config.jwt_refresh_secret as string,
-    {
-      expiresIn: "1y",
-    }
-  );
+  // const refreshToken = jwt.sign(
+  //   jwtPayload,
+  //   config.jwt_refresh_secret as string,
+  //   {
+  //     expiresIn: "1y",
+  //   }
+  // );
 
   return {
-    accessToken,
-    refreshToken,
+    token,
+    // refreshToken,
+    user: {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
+      address: user.address,
+      role: user.role,
+    },
   };
 };
 
