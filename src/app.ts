@@ -3,6 +3,7 @@ import express, { Application, Request, Response } from "express";
 // import globalErrorHandler from './app/middlewares/globalErrorHandle';
 // import notFound from './app/middlewares/notFound';
 import router from "./routes";
+import { notFound } from "./middlewares/notFound";
 
 const app: Application = express();
 
@@ -20,6 +21,6 @@ app.get("/", test);
 
 // app.use(globalErrorHandler);
 
-// app.use(notFound);
+app.use(notFound);
 
 export default app;
