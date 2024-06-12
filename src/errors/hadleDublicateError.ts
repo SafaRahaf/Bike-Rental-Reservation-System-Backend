@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import { TGenericErrorResponse, TErrorSources } from "../interface/error";
 
 const handleDulicateError = (err: any): TGenericErrorResponse => {

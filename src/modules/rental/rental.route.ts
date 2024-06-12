@@ -1,7 +1,4 @@
 import { RentalValidation } from "./rental.validation";
-// /api/rentals (POST)
-// /api/rentals/:id/return (PUT)
-// /api/rentals (GET)
 
 import express from "express";
 import auth from "../../middlewares/auth";
@@ -11,7 +8,6 @@ import validateRequest from "../../middlewares/validationRequest";
 
 const router = express.Router();
 
-// /api/rentals (POST)
 router.post(
   "/",
   auth(ROLE.admin),

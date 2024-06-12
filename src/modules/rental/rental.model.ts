@@ -1,17 +1,14 @@
 import { Schema, model } from "mongoose";
 import { TRental } from "./rental.interface";
 
-const rentalSchema = new Schema<TRental>(
-  {
-    userId: { type: Schema.Types.ObjectId, ref: "User" },
-    bikeId: { type: Schema.Types.ObjectId, ref: "Bike", required: true },
-    startTime: { type: Date, required: true },
-    returnTime: { type: Date, default: null },
-    totalCost: { type: Number, default: 0 },
-    isReturned: { type: Boolean, default: false },
-  }
-  //   { timestamps: true }
-);
+const rentalSchema = new Schema<TRental>({
+  userId: { type: Schema.Types.ObjectId, ref: "User" },
+  bikeId: { type: Schema.Types.ObjectId, ref: "Bike", required: true },
+  startTime: { type: Date, required: true },
+  returnTime: { type: Date, default: null },
+  totalCost: { type: Number, default: 0 },
+  isReturned: { type: Boolean, default: false },
+});
 
 const Rental = model<TRental>("Rental", rentalSchema);
 
