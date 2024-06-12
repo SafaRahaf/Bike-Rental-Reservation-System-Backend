@@ -1,0 +1,33 @@
+import catchAsync from "../../utils/catchAsync";
+import { rentalServices } from "./rental.service";
+
+const createRental = catchAsync(async (req, res) => {
+  const { bikeId, startTime } = req.body;
+  // @ts-ignore
+  const userId = req.user._id;
+
+  const rental = await rentalServices.createRental(userId, bikeId, startTime);
+
+  res.status(200).json({
+    success: true,
+    statusCode: 200,
+    message: "Rental created successfully",
+    data: rental,
+  });
+});
+
+const getAllRentals = catchAsync(async (req, res) => {
+  const rental = await rentalServices.getAllRentals();
+
+  res.status(200).json({
+    success: true,
+    statusCode: 200,
+    message: "Rentals retrieved successfully",
+    data: rental,
+  });
+});
+
+export const rentalControllers = {
+  createRental,
+  getAllRentals,
+};
