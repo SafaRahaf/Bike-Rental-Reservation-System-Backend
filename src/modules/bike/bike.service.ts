@@ -18,7 +18,6 @@ const updateBike = async (id: string, payload: Partial<TBike>) => {
 
 const deleteBike = async (id: string) => {
   const deleteBike = await Bike.findByIdAndDelete(id);
-
   return deleteBike;
 };
 
