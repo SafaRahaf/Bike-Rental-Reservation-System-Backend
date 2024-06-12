@@ -26,6 +26,10 @@ const createRental = async (
 const getAllRentals = async () => {
   const result = await Rental.find();
 
+  if (!result) {
+    throw new Error("No Data Found");
+  }
+
   return result;
 };
 

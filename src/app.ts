@@ -4,6 +4,7 @@ import express, { Application, Request, Response } from "express";
 // import notFound from './app/middlewares/notFound';
 import router from "./routes";
 import { notFound } from "./middlewares/notFound";
+import { globalErrorHandler } from "./middlewares/globalErrorHandler";
 
 const app: Application = express();
 
@@ -19,7 +20,7 @@ const test = async (req: Request, res: Response) => {
 
 app.get("/", test);
 
-// app.use(globalErrorHandler);
+app.use(globalErrorHandler);
 
 app.use(notFound);
 

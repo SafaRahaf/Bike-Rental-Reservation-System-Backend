@@ -8,6 +8,11 @@ const createBike = async (payload: TBike) => {
 
 const getAllBikes = async () => {
   const bikes = await Bike.find({});
+
+  if (!bikes) {
+    throw new Error("No data found");
+  }
+
   return bikes;
 };
 
