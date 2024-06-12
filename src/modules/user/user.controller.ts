@@ -7,6 +7,14 @@ const getProfileInfo = catchAsync(async (req, res) => {
 
   const userProfile = await UserServices.getProfile(userId);
 
+  if (!userProfile) {
+    return res.status(404).json({
+      success: false,
+      message: "No Data Found",
+      data: [],
+    });
+  }
+
   res.status(200).json({
     success: true,
     statusCode: 200,

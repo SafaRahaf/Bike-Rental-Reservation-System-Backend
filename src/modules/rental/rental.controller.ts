@@ -19,6 +19,14 @@ const createRental = catchAsync(async (req, res) => {
 const getAllRentals = catchAsync(async (req, res) => {
   const rental = await rentalServices.getAllRentals();
 
+  if (rental.length === 0) {
+    return res.status(404).json({
+      success: false,
+      message: "No Data Found",
+      data: [],
+    });
+  }
+
   res.status(200).json({
     success: true,
     statusCode: 200,

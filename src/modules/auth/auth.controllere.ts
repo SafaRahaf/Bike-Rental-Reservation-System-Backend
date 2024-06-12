@@ -19,11 +19,6 @@ const signUp = catchAsync(async (req, res) => {
 const login = catchAsync(async (req, res) => {
   const { token, user } = await authServices.login(req.body);
 
-  // res.cookie("refreshToken", {
-  //   httpOnly: true,
-  //   secure: config.node_env === "production",
-  // });
-
   res.status(200).json({
     success: true,
     message: "User logged in successfully!",
