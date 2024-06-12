@@ -13,8 +13,6 @@ const signUp = async (payload: TUser): Promise<any> => {
     throw new Error("User already exists");
   }
 
-  payload.role = ROLE.admin;
-
   const newUser = await User.create(payload);
 
   return newUser;

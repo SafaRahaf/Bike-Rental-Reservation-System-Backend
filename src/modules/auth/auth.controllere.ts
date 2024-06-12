@@ -11,7 +11,8 @@ const signUp = catchAsync(async (req, res) => {
 
   res.status(200).json({
     success: true,
-    message: "Sign Up successfully!",
+    statusCode: 201,
+    message: "User registered successfully",
     data: result,
   });
 });
@@ -21,7 +22,8 @@ const login = catchAsync(async (req, res) => {
 
   res.status(200).json({
     success: true,
-    message: "User logged in successfully!",
+    statusCode: 200,
+    message: "User logged in successfully",
     token,
     data: user,
   });

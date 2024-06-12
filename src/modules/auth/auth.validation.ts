@@ -17,7 +17,7 @@ const createRegisterAuthValidation = z.object({
       .string({ required_error: "Email is required" })
       .email({ message: "Invalid email format" }),
     password: passwordSchema,
-    phone: z.number({ required_error: "Phone is required" }),
+    phone: z.string({ required_error: "Phone is required" }),
     address: z.string({ required_error: "Address is required" }),
   }),
 });

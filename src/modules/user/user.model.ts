@@ -20,7 +20,7 @@ const userSchema = new Schema<TUser>(
       select: 0,
     },
     phone: {
-      type: Number,
+      type: String,
       required: true,
     },
     address: {
@@ -30,6 +30,7 @@ const userSchema = new Schema<TUser>(
     role: {
       type: String,
       enum: Object.keys(ROLE),
+      default: ROLE.admin,
     },
   },
   {
