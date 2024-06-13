@@ -32,3 +32,15 @@ The Bike Rental System is a web application designed to facilitate the rental an
    ```bash
    git clone https://github.com/SafaRahaf/Bike-Rental-Reservation-System-Backend.git
    ```
+
+2. **Create a admin user:**
+   ```bash
+   {
+   "name": "John Doe",
+   "email": "john@example.com",
+   "password": "password123",
+   "phone": "1234567890",
+   "address": "123 Main St, Anytown",
+   "role" : "admin"
+   }
+   ```
