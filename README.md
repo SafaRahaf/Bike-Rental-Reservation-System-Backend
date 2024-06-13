@@ -35,7 +35,7 @@ The Bike Rental System is a web application designed to facilitate the rental an
 
 ## here are some request and response for this site
 
-1. **Create a admin user:**
+1. **SignUp:**
 
 -Request body: (post)
 
@@ -46,26 +46,20 @@ The Bike Rental System is a web application designed to facilitate the rental an
 "password": "password123",
 "phone": "1234567890",
 "address": "123 Main St, Anytown",
-"role" : "admin"
+"role" : "admin" // or you can create normal user "user" ( it depends what you wanna create )
 }
 ```
 
--Response body: (post)
+2. **Login:**
+
+-Request body: (post)
 
 ```bash
 {
-  "success": true,
-  "statusCode": 201,
-  "message": "User registered successfully",
-  "data": {
-    "_id": "60d9c4e4f3b4b544b8b8d1f5",
-    "name": "John Doe",
-    "email": "john@example.com",
-    "phone": "1234567890",
-    "address": "123 Main St, Anytown",
-    "role" : "admin",
-    "createdAt": "2024-06-10T13:26:51.289Z",
-    "updatedAt": "2024-06-10T13:26:51.289Z",
-    "__v": 0
-  }
+  "email": "john@example.com",
+  "password": "password123"
+}
+
 ```
+
+after login you are going to get a token with this token u can create, update, and delete bikes ( only as admin ) & rentals
