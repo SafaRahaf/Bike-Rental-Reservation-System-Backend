@@ -1,4 +1,4 @@
-# Bike Rental System
+# Bike rental service for tourists or locals.
 
 ## Project Overview
 
@@ -12,30 +12,27 @@ The Bike Rental System is a web application designed to facilitate the rental an
 
 - **User Authentication:** Secure login and registration for users.
 - **Bike Availability:** Check bike availability in real-time.
-- **Rental Management:** Rent a bike and return it with cost calculation.
+- **Rental Management:** Rent a bike and return it with cost calculation. only allowed for admin
 - **Admin Dashboard:** Manage bikes, rentals, and users.
 
 ## Technology Used
 
-- **Frontend:** React, Redux, Bootstrap
-- **Backend:** Node.js, Express.js
+- **Backend:** Typescript (js)
 - **Database:** MongoDB
 - **Authentication:** JWT
-- **Deployment:** Docker, Heroku
+- **Deployment:** vercel
 
 ## Setup Instructions
 
 ### Prerequisites
 
-- Node.js (>=14.x.x)
+- Typescript
 - MongoDB
-- Docker (optional, for deployment)
 
 ### Installation
 
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-repo/bike-rental-system.git
-   cd bike-rental-system
+   git clone https://github.com/SafaRahaf/Bike-Rental-Reservation-System-Backend.git
    ```
