@@ -92,3 +92,18 @@ After login, you will receive a token. Use this token to create, update, and del
 }
 
 ```
+
+4. **Update Profile:**
+
+-Endpoint: /api/users/me (PUT)
+
+-Request Headers: Authorization: Bearer jwt_token
+
+```bash
+{
+  "name": "John Updated",
+  "phone": "0987654321"
+  //etc...
+}
+
+```
