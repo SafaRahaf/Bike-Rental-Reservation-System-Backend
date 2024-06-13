@@ -13,7 +13,7 @@ The Bike Rental System is a web application designed to facilitate the rental an
 
 ## Technology Used
 
-- **Backend:** Typescript (js)
+- **Backend:** Typescript (NODE js)
 - **Database:** MongoDB
 - **Authentication:** JWT
 - **Deployment:** vercel
