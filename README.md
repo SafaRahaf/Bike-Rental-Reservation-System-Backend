@@ -37,6 +37,8 @@ The Bike Rental System is a web application designed to facilitate the rental an
 
 1. **SignUp:**
 
+-Endpoint: POST /api/auth/signup (post)
+
 -Request body: (post)
 
 ```bash
@@ -46,13 +48,15 @@ The Bike Rental System is a web application designed to facilitate the rental an
 "password": "password123",
 "phone": "1234567890",
 "address": "123 Main St, Anytown",
-"role" : "admin" // or you can create normal user "user" ( it depends what you wanna create )
+"role" : "admin" // or "user"
 }
 ```
 
 2. **Login:**
 
--Request body: (post)
+-Endpoint: POST /api/auth/login (post)
+
+-Request body:
 
 ```bash
 {
@@ -62,4 +66,29 @@ The Bike Rental System is a web application designed to facilitate the rental an
 
 ```
 
-after login you are going to get a token with this token u can create, update, and delete bikes ( only as admin ) & rentals
+After login, you will receive a token. Use this token to create, update, and delete bikes and rentals (only as an admin).
+
+3. **Get Profile:**
+
+-Endpoint: /api/users/me (GET)
+
+-Request Headers: Authorization: Bearer jwt_token
+
+```bash
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "User profile retrieved successfully",
+  "data": {
+    "_id": "6666ff917181b8e5ffe04f91",
+    "name": "admin",
+    "email": "admin@gmail.com",
+    "phone": "1234567890",
+    "address": "123 Main St, Anytown",
+    "role": "admin",
+    "createdAt": "2024-06-10T13:28:49.260Z",
+    "updatedAt": "2024-06-10T13:28:49.260Z",
+    "__v": 0
+}
+
+```
