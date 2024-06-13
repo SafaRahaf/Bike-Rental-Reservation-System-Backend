@@ -17,11 +17,11 @@ router.post(
 
 router.get("/", auth(ROLE.admin), rentalControllers.getAllRentals);
 
-// router.put(
-//   "/:id/return",
-//   auth(ROLE.admin),
-// validateRequest(RentalValidation.updateRentalValidation),
-//   rentalControllers.createRentalController
-// );
+router.put(
+  "/:id/return",
+  auth(ROLE.admin),
+  validateRequest(RentalValidation.updateRentalValidation),
+  rentalControllers.returnRentals
+);
 
 export const RentalRoutes = router;

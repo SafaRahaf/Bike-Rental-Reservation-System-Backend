@@ -32,8 +32,10 @@ const getAllRentals = async () => {
 
   return result;
 };
+const returnRentalsBike = async () => {};
 
 export const rentalServices = {
   createRental,
   getAllRentals,
+  returnRentalsBike,
 };
