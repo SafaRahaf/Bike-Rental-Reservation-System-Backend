@@ -13,3 +13,11 @@ exports.default = {
     salt_round: process.env.SALT_ROUND,
     jwt_access_secret: process.env.JWT_SECRET,
 };
+// export default {
+//   node_env: "development",
+//   port: 3000,
+//   db_url:
+//     "mongodb+srv://assignment3:assignment3@bike-rental-service.28omdzn.mongodb.net/",
+//   salt_round: 12,
+//   jwt_access_secret: "secret",
+// };
