@@ -3,9 +3,6 @@ import catchAsync from "../../utils/catchAsync";
 import { User } from "../user/user.model";
 import { authServices } from "./auth.service";
 
-// /api/auth/login (POST)
-// /api/auth/signup (POST)
-
 const signUp = catchAsync(async (req, res) => {
   const result = await authServices.signUp(req.body);
 
