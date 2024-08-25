@@ -7,13 +7,11 @@ import AppError from "../errors/AppError";
 
 export const auth = (...requiredRoles: (keyof typeof ROLE)[]) => {
   return catchAsync(async (req, res, next) => {
-    const authHeader = req.headers.authorization;
+    const token = req.headers.authorization;
 
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    if (!token) {
       throw new AppError(401, "You are not authorized to access this route");
     }
-
-    const token = authHeader.split(" ")[1];
 
     try {
       const verifiedToken = jwt.verify(

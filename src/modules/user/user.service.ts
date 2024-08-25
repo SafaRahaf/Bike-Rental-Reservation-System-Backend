@@ -11,6 +11,11 @@ const getProfile = async (userId: string) => {
   }
 };
 
+const createAdminIntoDB = async (payload: TUser) => {
+  const admin = await User.create(payload);
+  return admin;
+};
+
 const updateProfile = async (userId: string, updateData: any) => {
   const updateProfile = await User.findByIdAndUpdate(userId, updateData, {
     new: true,
@@ -26,4 +31,5 @@ const updateProfile = async (userId: string, updateData: any) => {
 export const UserServices = {
   getProfile,
   updateProfile,
+  createAdminIntoDB,
 };

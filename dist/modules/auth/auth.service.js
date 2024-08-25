@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.authServices = void 0;
 const config_1 = __importDefault(require("../../config"));
+const user_constant_1 = require("../user/user.constant");
 const user_model_1 = require("../user/user.model");
 const auth_utils_1 = require("./auth.utils");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
@@ -22,6 +23,7 @@ const signUp = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     if (user) {
         throw new Error("User already exists");
     }
+    payload.role = user_constant_1.ROLE.user;
     const newUser = yield user_model_1.User.create(payload);
     return newUser;
 });
@@ -41,16 +43,12 @@ const login = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const token = jsonwebtoken_1.default.sign(jwtPayload, config_1.default.jwt_access_secret, {
         expiresIn: "1y",
     });
-    // const refreshToken = jwt.sign(
-    //   jwtPayload,
-    //   config.jwt_refresh_secret as string,
-    //   {
-    //     expiresIn: "1y",
-    //   }
-    // );
+    const refreshToken = jsonwebtoken_1.default.sign(jwtPayload, config_1.default.jwt_access_secret, {
+        expiresIn: "1y",
+    });
     return {
         token,
-        // refreshToken,
+        refreshToken,
         user: {
             _id: user._id,
             name: user.name,

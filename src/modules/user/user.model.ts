@@ -30,7 +30,7 @@ const userSchema = new Schema<TUser>(
     role: {
       type: String,
       enum: Object.keys(ROLE),
-      default: ROLE.admin,
+      default: ROLE.user,
     },
   },
   {

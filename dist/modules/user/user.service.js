@@ -20,6 +20,10 @@ const getProfile = (userId) => __awaiter(void 0, void 0, void 0, function* () {
         throw new Error("User profile not found");
     }
 });
+const createAdminIntoDB = (payload) => __awaiter(void 0, void 0, void 0, function* () {
+    const admin = yield user_model_1.User.create(payload);
+    return admin;
+});
 const updateProfile = (userId, updateData) => __awaiter(void 0, void 0, void 0, function* () {
     const updateProfile = yield user_model_1.User.findByIdAndUpdate(userId, updateData, {
         new: true,
@@ -34,4 +38,5 @@ const updateProfile = (userId, updateData) => __awaiter(void 0, void 0, void 0, 
 exports.UserServices = {
     getProfile,
     updateProfile,
+    createAdminIntoDB,
 };
