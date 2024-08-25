@@ -18,6 +18,34 @@ const user_model_1 = require("../modules/user/user.model");
 const config_1 = __importDefault(require("../config"));
 const catchAsync_1 = __importDefault(require("../utils/catchAsync"));
 const AppError_1 = __importDefault(require("../errors/AppError"));
+// export const auth = (...requiredRoles: (keyof typeof ROLE)[]) => {
+//   return catchAsync(async (req, res, next) => {
+//     const token = req.headers.authorization;
+//     if (!token) {
+//       throw new AppError(401, "You are not authorized to access this route");
+//     }
+//     try {
+//       const verifiedToken = jwt.verify(
+//         token,
+//         config.jwt_access_secret as string
+//       );
+//       const { role, email } = verifiedToken as JwtPayload;
+//       const user = await User.findOne({ email });
+//       if (!user) {
+//         throw new AppError(401, "User not found");
+//       }
+//       if (!requiredRoles.includes(role)) {
+//         throw new AppError(401, "You are not authorized to access this route");
+//       }
+//       // @ts-ignore
+//       req.user = user;
+//       next();
+//     } catch (error) {
+//       throw new AppError(401, "Invalid token");
+//     }
+//   });
+// };
+// export default auth;
 const auth = (...requiredRoles) => {
     return (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         const token = req.headers.authorization;

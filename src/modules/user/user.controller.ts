@@ -1,4 +1,5 @@
 import catchAsync from "../../utils/catchAsync";
+import { ROLE } from "./user.constant";
 import { UserServices } from "./user.service";
 
 const getProfileInfo = catchAsync(async (req, res) => {
@@ -37,18 +38,30 @@ const updateProfileInfo = catchAsync(async (req, res) => {
   // @ts-ignore
   const userId = req.user._id;
 
-  const { name, email, phone, address } = req.body;
+  const { role, ...updateData } = req.body;
 
-  const updatedProfile = await UserServices.updateProfile(userId, {
-    name,
-    email,
-    phone,
-    address,
-  });
+  // @ts-ignore
+  if (role && req.user.role !== ROLE.admin) {
+    return res.status(403).json({
+      success: false,
+      message: "You are not authorized to update the role",
+    });
+  }
+
+  // @ts-ignore
+  if (role && req.user.role === ROLE.admin) {
+    const updatedUser = await UserServices.updateRole(userId, role);
+    return res.status(200).json({
+      success: true,
+      message: "User role updated successfully",
+      data: updatedUser,
+    });
+  }
+
+  const updatedProfile = await UserServices.updateProfile(userId, updateData);
 
   res.status(200).json({
     success: true,
-    statusCode: 200,
     message: "User profile updated successfully",
     data: updatedProfile,
   });
@@ -57,4 +70,5 @@ const updateProfileInfo = catchAsync(async (req, res) => {
 export const userControllers = {
   getProfileInfo,
   updateProfileInfo,
+  createAdmin,
 };

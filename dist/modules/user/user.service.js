@@ -35,8 +35,18 @@ const updateProfile = (userId, updateData) => __awaiter(void 0, void 0, void 0, 
         throw new Error("User profile not found");
     }
 });
+const updateRole = (userId, role) => __awaiter(void 0, void 0, void 0, function* () {
+    const updatedUser = yield user_model_1.User.findByIdAndUpdate(userId, { role }, { new: true });
+    if (updatedUser) {
+        return updatedUser;
+    }
+    else {
+        throw new Error("User not found");
+    }
+});
 exports.UserServices = {
     getProfile,
     updateProfile,
     createAdminIntoDB,
+    updateRole,
 };

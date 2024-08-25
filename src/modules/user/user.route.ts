@@ -6,5 +6,10 @@ const router = express.Router();
 
 router.get("/me", auth(ROLE.admin), userControllers.getProfileInfo);
 router.put("/me", auth(ROLE.admin), userControllers.updateProfileInfo);
+router.put(
+  "/role/:userId",
+  auth(ROLE.admin),
+  userControllers.updateProfileInfo
+);
 
 export const UserRoutes = router;

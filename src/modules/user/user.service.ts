@@ -28,8 +28,23 @@ const updateProfile = async (userId: string, updateData: any) => {
   }
 };
 
+const updateRole = async (userId: string, role: string) => {
+  const updatedUser = await User.findByIdAndUpdate(
+    userId,
+    { role },
+    { new: true }
+  );
+
+  if (updatedUser) {
+    return updatedUser;
+  } else {
+    throw new Error("User not found");
+  }
+};
+
 export const UserServices = {
   getProfile,
   updateProfile,
   createAdminIntoDB,
+  updateRole,
 };
