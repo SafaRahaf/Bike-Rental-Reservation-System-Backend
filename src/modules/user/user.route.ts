@@ -12,4 +12,17 @@ router.put(
   userControllers.updateProfileInfo
 );
 
+//get all users
+router.get(
+  "/",
+  // auth(ROLE.admin),
+  userControllers.getAllUsers
+);
+
+router.put(
+  "/role/:userId",
+  // auth(ROLE.admin),
+  userControllers.updateUserRole
+);
+
 export const UserRoutes = router;

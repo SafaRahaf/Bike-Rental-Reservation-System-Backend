@@ -8,5 +8,5 @@ export default {
   port: process.env.PORT,
   db_url: process.env.DB_CONNECTION,
   salt_round: 12,
-  jwt_access_secret: process.env.JWT_SECRET,
+  jwt_access_secret: process.env.JWT_REFRESH_SECRET,
 };

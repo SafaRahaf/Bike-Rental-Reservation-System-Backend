@@ -1,4 +1,5 @@
 import config from "../../config";
+import { verifyToken } from "../../utils/authUtils";
 import { ROLE } from "../user/user.constant";
 import { TUser } from "../user/user.interface";
 import { User } from "../user/user.model";
@@ -67,7 +68,46 @@ const login = async (payload: TLoginUser) => {
   };
 };
 
+const refreshToken = async (token: string) => {
+  try {
+    const decoded = verifyToken(token, config.jwt_access_secret as string);
+
+    const { email } = decoded;
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    const jwtPayload = {
+      email: user.email,
+      role: user.role,
+    };
+
+    const newAccessToken = jwt.sign(
+      jwtPayload,
+      config.jwt_access_secret as string,
+      { expiresIn: "15m" }
+    );
+
+    const newRefreshToken = jwt.sign(
+      jwtPayload,
+      config.jwt_access_secret as string,
+      { expiresIn: "7d" }
+    );
+
+    return {
+      accessToken: newAccessToken,
+      refreshToken: newRefreshToken,
+    };
+  } catch (error) {
+    throw new Error("Invalid refresh token");
+  }
+};
+
 export const authServices = {
   signUp,
   login,
+  refreshToken,
 };

@@ -44,9 +44,14 @@ const updateRole = (userId, role) => __awaiter(void 0, void 0, void 0, function*
         throw new Error("User not found");
     }
 });
+const getAllUsertIntoDB = () => __awaiter(void 0, void 0, void 0, function* () {
+    const users = yield user_model_1.User.find();
+    return users;
+});
 exports.UserServices = {
     getProfile,
     updateProfile,
     createAdminIntoDB,
     updateRole,
+    getAllUsertIntoDB,
 };

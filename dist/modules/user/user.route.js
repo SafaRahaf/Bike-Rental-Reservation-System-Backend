@@ -12,4 +12,11 @@ const router = express_1.default.Router();
 router.get("/me", (0, auth_1.default)(user_constant_1.ROLE.admin), user_controller_1.userControllers.getProfileInfo);
 router.put("/me", (0, auth_1.default)(user_constant_1.ROLE.admin), user_controller_1.userControllers.updateProfileInfo);
 router.put("/role/:userId", (0, auth_1.default)(user_constant_1.ROLE.admin), user_controller_1.userControllers.updateProfileInfo);
+//get all users
+router.get("/", 
+// auth(ROLE.admin),
+user_controller_1.userControllers.getAllUsers);
+router.put("/role/:userId", 
+// auth(ROLE.admin),
+user_controller_1.userControllers.updateUserRole);
 exports.UserRoutes = router;

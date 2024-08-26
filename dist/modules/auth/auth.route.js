@@ -13,4 +13,9 @@ const auth_validation_1 = require("./auth.validation");
 const router = express_1.default.Router();
 router.post("/signup", (0, validationRequest_1.default)(auth_validation_1.AuthValidation.createRegisterAuthValidation), auth_controllere_1.authControllers.signUp);
 router.post("/login", (0, validationRequest_1.default)(auth_validation_1.AuthValidation.createLoginAuthValidation), auth_controllere_1.authControllers.login);
+// router.post(
+//   "/referesh-token",
+//   // validateRequest(AuthValidation.refreshTokenValidationSchema),
+//   authControllers.refreshToken
+// );
 exports.AuthRoutes = router;

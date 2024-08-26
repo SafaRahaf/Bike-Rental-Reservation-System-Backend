@@ -1,3 +1,4 @@
+import httpStatus from "http-status";
 import config from "../../config";
 import catchAsync from "../../utils/catchAsync";
 import { User } from "../user/user.model";
@@ -26,7 +27,28 @@ const login = catchAsync(async (req, res) => {
   });
 });
 
+const refreshToken = catchAsync(async (req, res) => {
+  const { refreshToken } = req.cookies;
+
+  if (!refreshToken) {
+    return res.status(httpStatus.UNAUTHORIZED).json({
+      success: false,
+      message: "Refresh token is required!",
+    });
+  }
+
+  const result = await authServices.refreshToken(refreshToken);
+
+  res.status(httpStatus.OK).json({
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Access token is retrieved successfully!",
+    data: result,
+  });
+});
+
 export const authControllers = {
   signUp,
   login,
+  refreshToken,
 };

@@ -80,8 +80,35 @@ const updateProfileInfo = (0, catchAsync_1.default)((req, res) => __awaiter(void
         data: updatedProfile,
     });
 }));
+const updateUserRole = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { userId } = req.params;
+    const { role } = req.body;
+    //@ts-ignore
+    if ((req === null || req === void 0 ? void 0 : req.user.role) !== user_constant_1.ROLE.admin) {
+        return res.status(403).json({
+            success: false,
+            message: "You are not authorized to update the role",
+        });
+    }
+    const updatedUser = yield user_service_1.UserServices.updateRole(userId, role);
+    res.status(200).json({
+        success: true,
+        message: "User role updated successfully",
+        data: updatedUser,
+    });
+}));
+const getAllUsers = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield user_service_1.UserServices.getAllUsertIntoDB();
+    res.status(200).json({
+        success: true,
+        message: "Users retrieved successfully!",
+        data: result,
+    });
+}));
 exports.userControllers = {
     getProfileInfo,
     updateProfileInfo,
     createAdmin,
+    getAllUsers,
+    updateUserRole,
 };

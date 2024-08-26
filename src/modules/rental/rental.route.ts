@@ -15,7 +15,11 @@ router.post(
   rentalControllers.createRental
 );
 
-router.get("/", auth(ROLE.admin), rentalControllers.getAllRentals);
+router.get(
+  "/",
+  //auth(ROLE.admin),
+  rentalControllers.getAllRentals
+);
 
 router.put(
   "/:id/return",

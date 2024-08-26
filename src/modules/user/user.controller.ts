@@ -67,8 +67,41 @@ const updateProfileInfo = catchAsync(async (req, res) => {
   });
 });
 
+const updateUserRole = catchAsync(async (req, res) => {
+  const { userId } = req.params;
+  const { role } = req.body;
+
+  //@ts-ignore
+  if (req?.user.role !== ROLE.admin) {
+    return res.status(403).json({
+      success: false,
+      message: "You are not authorized to update the role",
+    });
+  }
+
+  const updatedUser = await UserServices.updateRole(userId, role);
+
+  res.status(200).json({
+    success: true,
+    message: "User role updated successfully",
+    data: updatedUser,
+  });
+});
+
+const getAllUsers = catchAsync(async (req, res) => {
+  const result = await UserServices.getAllUsertIntoDB();
+
+  res.status(200).json({
+    success: true,
+    message: "Users retrieved successfully!",
+    data: result,
+  });
+});
+
 export const userControllers = {
   getProfileInfo,
   updateProfileInfo,
   createAdmin,
+  getAllUsers,
+  updateUserRole,
 };

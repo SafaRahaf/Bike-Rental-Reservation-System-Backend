@@ -42,9 +42,15 @@ const updateRole = async (userId: string, role: string) => {
   }
 };
 
+const getAllUsertIntoDB = async () => {
+  const users = await User.find();
+  return users;
+};
+
 export const UserServices = {
   getProfile,
   updateProfile,
   createAdminIntoDB,
   updateRole,
+  getAllUsertIntoDB,
 };
