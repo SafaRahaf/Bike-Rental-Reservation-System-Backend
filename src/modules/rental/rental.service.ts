@@ -32,6 +32,23 @@ const getAllRentals = async () => {
 
   return result;
 };
+
+const updateRentalStatus = async (
+  rentalId: string,
+  status: boolean
+): Promise<TRental | null> => {
+  const rental = await Rental.findById(rentalId);
+
+  if (!rental) {
+    throw new Error("Rental not found");
+  }
+
+  rental.isReturned = status;
+  await rental.save();
+
+  return rental;
+};
+
 const returnRentalsBike = async (rentalId: string): Promise<TRental | null> => {
   const rental = await Rental.findById(rentalId);
 
@@ -64,8 +81,10 @@ const returnRentalsBike = async (rentalId: string): Promise<TRental | null> => {
 
   return rental;
 };
+
 export const rentalServices = {
   createRental,
   getAllRentals,
   returnRentalsBike,
+  updateRentalStatus,
 };

@@ -43,6 +43,20 @@ const getAllRentals = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, 
         data: rental,
     });
 }));
+const updateRentalStatus = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const { status } = req.body;
+    const rental = yield rental_service_1.rentalServices.updateRentalStatus(id, status);
+    if (!rental) {
+        return res.status(404).send({ message: "Rental not found" });
+    }
+    res.send({
+        success: true,
+        statusCode: 200,
+        message: "Rental status updated successfully",
+        data: rental,
+    });
+}));
 const returnRentals = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const rentalId = req.params.id;
     const rental = yield rental_service_1.rentalServices.returnRentalsBike(rentalId);
@@ -60,4 +74,5 @@ exports.rentalControllers = {
     createRental,
     getAllRentals,
     returnRentals,
+    updateRentalStatus,
 };

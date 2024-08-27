@@ -9,14 +9,8 @@ const user_controller_1 = require("./user.controller");
 const auth_1 = __importDefault(require("../../middlewares/auth"));
 const user_constant_1 = require("./user.constant");
 const router = express_1.default.Router();
-router.get("/me", (0, auth_1.default)(user_constant_1.ROLE.admin), user_controller_1.userControllers.getProfileInfo);
-router.put("/me", (0, auth_1.default)(user_constant_1.ROLE.admin), user_controller_1.userControllers.updateProfileInfo);
-router.put("/role/:userId", (0, auth_1.default)(user_constant_1.ROLE.admin), user_controller_1.userControllers.updateProfileInfo);
-//get all users
-router.get("/", 
-// auth(ROLE.admin),
-user_controller_1.userControllers.getAllUsers);
-router.put("/role/:userId", 
-// auth(ROLE.admin),
-user_controller_1.userControllers.updateUserRole);
+router.get("/me", (0, auth_1.default)(user_constant_1.ROLE.admin, user_constant_1.ROLE.user), user_controller_1.userControllers.getProfileInfo);
+router.put("/me", (0, auth_1.default)(user_constant_1.ROLE.admin, user_constant_1.ROLE.user), user_controller_1.userControllers.updateProfileInfo);
+router.get("/", (0, auth_1.default)(user_constant_1.ROLE.admin), user_controller_1.userControllers.getAllUsers);
+router.put("/role/:userId", (0, auth_1.default)(user_constant_1.ROLE.admin), user_controller_1.userControllers.updateUserRole);
 exports.UserRoutes = router;

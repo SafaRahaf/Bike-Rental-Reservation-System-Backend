@@ -10,22 +10,31 @@ const router = express.Router();
 
 router.post(
   "/",
-  auth(ROLE.admin),
+  auth(ROLE.admin, ROLE.user),
   validateRequest(RentalValidation.createRentalValidation),
   rentalControllers.createRental
 );
 
-router.get(
-  "/",
-  //auth(ROLE.admin),
-  rentalControllers.getAllRentals
-);
+router.get("/", rentalControllers.getAllRentals);
 
-router.put(
+// router.put(
+//   "/:id/return",
+//   auth(ROLE.admin, ROLE.user),
+//   // validateRequest(RentalValidation.updateRentalValidation),
+//   rentalControllers.returnRentals
+// );
+
+router.patch(
   "/:id/return",
-  auth(ROLE.admin),
-  validateRequest(RentalValidation.updateRentalValidation),
+  auth(ROLE.admin, ROLE.user),
+  // validateRequest(RentalValidation.updateRentalValidation),
   rentalControllers.returnRentals
+);
+router.patch(
+  "/:id",
+  auth(ROLE.admin, ROLE.user),
+  // validateRequest(RentalValidation.updateRentalValidation),
+  rentalControllers.updateRentalStatus
 );
 
 export const RentalRoutes = router;

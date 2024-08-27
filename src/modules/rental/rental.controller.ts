@@ -35,6 +35,24 @@ const getAllRentals = catchAsync(async (req, res) => {
   });
 });
 
+const updateRentalStatus = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+
+  const rental = await rentalServices.updateRentalStatus(id, status);
+
+  if (!rental) {
+    return res.status(404).send({ message: "Rental not found" });
+  }
+
+  res.send({
+    success: true,
+    statusCode: 200,
+    message: "Rental status updated successfully",
+    data: rental,
+  });
+});
+
 const returnRentals = catchAsync(async (req, res) => {
   const rentalId = req.params.id;
 
@@ -56,4 +74,5 @@ export const rentalControllers = {
   createRental,
   getAllRentals,
   returnRentals,
+  updateRentalStatus,
 };

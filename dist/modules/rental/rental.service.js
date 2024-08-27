@@ -37,6 +37,15 @@ const getAllRentals = () => __awaiter(void 0, void 0, void 0, function* () {
     }
     return result;
 });
+const updateRentalStatus = (rentalId, status) => __awaiter(void 0, void 0, void 0, function* () {
+    const rental = yield rental_model_1.default.findById(rentalId);
+    if (!rental) {
+        throw new Error("Rental not found");
+    }
+    rental.isReturned = status;
+    yield rental.save();
+    return rental;
+});
 const returnRentalsBike = (rentalId) => __awaiter(void 0, void 0, void 0, function* () {
     const rental = yield rental_model_1.default.findById(rentalId);
     if (!rental) {
@@ -65,4 +74,5 @@ exports.rentalServices = {
     createRental,
     getAllRentals,
     returnRentalsBike,
+    updateRentalStatus,
 };
