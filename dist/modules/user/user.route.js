@@ -13,4 +13,5 @@ router.get("/me", (0, auth_1.default)(user_constant_1.ROLE.admin, user_constant_
 router.put("/me", (0, auth_1.default)(user_constant_1.ROLE.admin, user_constant_1.ROLE.user), user_controller_1.userControllers.updateProfileInfo);
 router.get("/", (0, auth_1.default)(user_constant_1.ROLE.admin), user_controller_1.userControllers.getAllUsers);
 router.put("/role/:userId", (0, auth_1.default)(user_constant_1.ROLE.admin), user_controller_1.userControllers.updateUserRole);
+router.delete("/:userId", (0, auth_1.default)(user_constant_1.ROLE.admin), user_controller_1.userControllers.deleteUser);
 exports.UserRoutes = router;

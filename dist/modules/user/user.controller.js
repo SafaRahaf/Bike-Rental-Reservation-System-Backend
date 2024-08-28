@@ -105,10 +105,33 @@ const getAllUsers = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, vo
         data: result,
     });
 }));
+const deleteUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { userId } = req.params;
+    // @ts-ignore
+    if (req.user.role !== user_constant_1.ROLE.admin) {
+        return res.status(403).json({
+            success: false,
+            message: "You are not authorized to delete users",
+        });
+    }
+    const deletedUser = yield user_service_1.UserServices.deleteUserFromDB(userId);
+    if (!deletedUser) {
+        return res.status(404).json({
+            success: false,
+            message: "User not found",
+        });
+    }
+    res.status(200).json({
+        success: true,
+        message: "User deleted successfully",
+        data: deletedUser,
+    });
+}));
 exports.userControllers = {
     getProfileInfo,
     updateProfileInfo,
     createAdmin,
     getAllUsers,
     updateUserRole,
+    deleteUser,
 };

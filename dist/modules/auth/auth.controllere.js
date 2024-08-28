@@ -13,7 +13,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.authControllers = void 0;
-const http_status_1 = __importDefault(require("http-status"));
 const catchAsync_1 = __importDefault(require("../../utils/catchAsync"));
 const auth_service_1 = require("./auth.service");
 const signUp = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -35,24 +34,7 @@ const login = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, 
         data: user,
     });
 }));
-const refreshToken = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { refreshToken } = req.cookies;
-    if (!refreshToken) {
-        return res.status(http_status_1.default.UNAUTHORIZED).json({
-            success: false,
-            message: "Refresh token is required!",
-        });
-    }
-    const result = yield auth_service_1.authServices.refreshToken(refreshToken);
-    res.status(http_status_1.default.OK).json({
-        statusCode: http_status_1.default.OK,
-        success: true,
-        message: "Access token is retrieved successfully!",
-        data: result,
-    });
-}));
 exports.authControllers = {
     signUp,
     login,
-    refreshToken,
 };

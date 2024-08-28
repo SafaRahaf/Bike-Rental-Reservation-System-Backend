@@ -25,8 +25,8 @@ app.use((0, cors_1.default)({
 }));
 app.use("/api", routes_1.default);
 const test = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const a = "hallo Bike Rental Reservation System Backend App";
-    res.send(a);
+    const title = "hallo Bike Rental Reservation System Backend App";
+    res.send(title);
 });
 app.get("/", test);
 app.use(globalErrorHandler_1.globalErrorHandler);

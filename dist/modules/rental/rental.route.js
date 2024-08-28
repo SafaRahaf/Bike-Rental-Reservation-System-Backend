@@ -13,12 +13,6 @@ const validationRequest_1 = __importDefault(require("../../middlewares/validatio
 const router = express_1.default.Router();
 router.post("/", (0, auth_1.default)(user_constant_1.ROLE.admin, user_constant_1.ROLE.user), (0, validationRequest_1.default)(rental_validation_1.RentalValidation.createRentalValidation), rental_controller_1.rentalControllers.createRental);
 router.get("/", rental_controller_1.rentalControllers.getAllRentals);
-// router.put(
-//   "/:id/return",
-//   auth(ROLE.admin, ROLE.user),
-//   // validateRequest(RentalValidation.updateRentalValidation),
-//   rentalControllers.returnRentals
-// );
 router.patch("/:id/return", (0, auth_1.default)(user_constant_1.ROLE.admin, user_constant_1.ROLE.user), 
 // validateRequest(RentalValidation.updateRentalValidation),
 rental_controller_1.rentalControllers.returnRentals);

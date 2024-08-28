@@ -18,8 +18,8 @@ app.use(
 app.use("/api", router);
 
 const test = async (req: Request, res: Response) => {
-  const a = "hallo Bike Rental Reservation System Backend App";
-  res.send(a);
+  const title = "hallo Bike Rental Reservation System Backend App";
+  res.send(title);
 };
 
 app.get("/", test);

@@ -57,17 +57,18 @@ const returnRentalsBike = (rentalId) => __awaiter(void 0, void 0, void 0, functi
     const returnTime = new Date();
     const startTime = new Date(rental.startTime);
     const rentalDurationHours = Math.ceil((returnTime.getTime() - startTime.getTime()) / (1000 * 60 * 60));
-    const pricePerHour = 15;
+    const bike = yield bike_model_1.Bike.findById(rental.bikeId);
+    if (!bike) {
+        throw new Error("Bike not found");
+    }
+    const pricePerHour = bike.pricePerHour;
     const totalCost = rentalDurationHours * pricePerHour;
     rental.returnTime = returnTime;
     rental.totalCost = totalCost;
     rental.isReturned = true;
     yield rental.save();
-    const bike = yield bike_model_1.Bike.findById(rental.bikeId);
-    if (bike) {
-        bike.isAvailable = true;
-        yield bike.save();
-    }
+    bike.isAvailable = true;
+    yield bike.save();
     return rental;
 });
 exports.rentalServices = {

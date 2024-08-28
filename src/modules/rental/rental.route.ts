@@ -17,13 +17,6 @@ router.post(
 
 router.get("/", rentalControllers.getAllRentals);
 
-// router.put(
-//   "/:id/return",
-//   auth(ROLE.admin, ROLE.user),
-//   // validateRequest(RentalValidation.updateRentalValidation),
-//   rentalControllers.returnRentals
-// );
-
 router.patch(
   "/:id/return",
   auth(ROLE.admin, ROLE.user),

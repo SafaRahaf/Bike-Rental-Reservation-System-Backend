@@ -47,10 +47,21 @@ const getAllUsertIntoDB = async () => {
   return users;
 };
 
+const deleteUserFromDB = async (userId: string) => {
+  const deletedUser = await User.findByIdAndDelete(userId);
+
+  if (deletedUser) {
+    return deletedUser;
+  } else {
+    throw new Error("User not found");
+  }
+};
+
 export const UserServices = {
   getProfile,
   updateProfile,
   createAdminIntoDB,
   updateRole,
   getAllUsertIntoDB,
+  deleteUserFromDB,
 };

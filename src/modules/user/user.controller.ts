@@ -98,10 +98,38 @@ const getAllUsers = catchAsync(async (req, res) => {
   });
 });
 
+const deleteUser = catchAsync(async (req, res) => {
+  const { userId } = req.params;
+
+  // @ts-ignore
+  if (req.user.role !== ROLE.admin) {
+    return res.status(403).json({
+      success: false,
+      message: "You are not authorized to delete users",
+    });
+  }
+
+  const deletedUser = await UserServices.deleteUserFromDB(userId);
+
+  if (!deletedUser) {
+    return res.status(404).json({
+      success: false,
+      message: "User not found",
+    });
+  }
+
+  res.status(200).json({
+    success: true,
+    message: "User deleted successfully",
+    data: deletedUser,
+  });
+});
+
 export const userControllers = {
   getProfileInfo,
   updateProfileInfo,
   createAdmin,
   getAllUsers,
   updateUserRole,
+  deleteUser,
 };

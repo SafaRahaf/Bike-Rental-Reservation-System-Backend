@@ -65,7 +65,13 @@ const returnRentalsBike = async (rentalId: string): Promise<TRental | null> => {
   const rentalDurationHours = Math.ceil(
     (returnTime.getTime() - startTime.getTime()) / (1000 * 60 * 60)
   );
-  const pricePerHour = 15;
+
+  const bike = await Bike.findById(rental.bikeId);
+  if (!bike) {
+    throw new Error("Bike not found");
+  }
+  const pricePerHour = bike.pricePerHour;
+
   const totalCost = rentalDurationHours * pricePerHour;
 
   rental.returnTime = returnTime;
@@ -73,11 +79,8 @@ const returnRentalsBike = async (rentalId: string): Promise<TRental | null> => {
   rental.isReturned = true;
   await rental.save();
 
-  const bike = await Bike.findById(rental.bikeId);
-  if (bike) {
-    bike.isAvailable = true;
-    await bike.save();
-  }
+  bike.isAvailable = true;
+  await bike.save();
 
   return rental;
 };

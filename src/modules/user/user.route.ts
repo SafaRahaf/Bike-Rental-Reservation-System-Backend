@@ -15,4 +15,6 @@ router.get("/", auth(ROLE.admin), userControllers.getAllUsers);
 
 router.put("/role/:userId", auth(ROLE.admin), userControllers.updateUserRole);
 
+router.delete("/:userId", auth(ROLE.admin), userControllers.deleteUser);
+
 export const UserRoutes = router;

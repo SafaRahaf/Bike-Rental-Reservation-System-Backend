@@ -18,10 +18,5 @@ router.post(
   validateRequest(AuthValidation.createLoginAuthValidation),
   authControllers.login
 );
-// router.post(
-//   "/referesh-token",
-//   // validateRequest(AuthValidation.refreshTokenValidationSchema),
-//   authControllers.refreshToken
-// );
 
 export const AuthRoutes = router;

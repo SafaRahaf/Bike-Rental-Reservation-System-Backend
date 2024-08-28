@@ -48,10 +48,20 @@ const getAllUsertIntoDB = () => __awaiter(void 0, void 0, void 0, function* () {
     const users = yield user_model_1.User.find();
     return users;
 });
+const deleteUserFromDB = (userId) => __awaiter(void 0, void 0, void 0, function* () {
+    const deletedUser = yield user_model_1.User.findByIdAndDelete(userId);
+    if (deletedUser) {
+        return deletedUser;
+    }
+    else {
+        throw new Error("User not found");
+    }
+});
 exports.UserServices = {
     getProfile,
     updateProfile,
     createAdminIntoDB,
     updateRole,
     getAllUsertIntoDB,
+    deleteUserFromDB,
 };

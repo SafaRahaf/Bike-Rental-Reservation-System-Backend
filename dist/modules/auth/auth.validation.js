@@ -30,15 +30,7 @@ const createLoginAuthValidation = zod_1.z.object({
         password: passwordSchema,
     }),
 });
-// const refreshTokenValidationSchema = z.object({
-//   cookies: z.object({
-//     refreshToken: z.string({
-//       required_error: "Refresh token is required!",
-//     }),
-//   }),
-// });
 exports.AuthValidation = {
     createRegisterAuthValidation,
     createLoginAuthValidation,
-    // refreshTokenValidationSchema,
 };
